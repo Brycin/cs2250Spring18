@@ -38,7 +38,9 @@ int main()
 
     printf("Hello %s %s\n", firstName, lastName);
     printf("Your initials are: %c%c\n", firstName[0], lastName[0]);
-
+    //To access individual characters use index notation with []
+    //Example: <stringName>[characterNumber] 
+    //For index notation the Array starts at position 0 not 1
     return 0;
 }
 // Function Definitions
