@@ -39,10 +39,18 @@ int main()
     int cost1;
     int cost2;
     int totalCost;
-    printf("Davy's auto shop services\n Oil change -- $35\n Tire rotation -- $19\n Car wash -- $7\n Car wax -- $12\n");
-    printf("Select first service:\n");
-    scanf("%s %s", userInput1, userInput2);
+    printf("Davy's auto shop services\nOil change -- $35\nTire rotation -- $19\nCar wash -- $7\nCar wax -- $12\n");
+    printf("\nSelect first service:\n");
+    scanf("%s", userInput1);
+    if((strcmp(userInput1, "-") != 0))
+{
+    scanf("%s", userInput2);
     printf("Select second service:\n");
+}
+    else
+{
+    printf("Select second service:\n");
+}
     scanf("%s", userInput3);
     if(strcmp(userInput3, "-") != 0)
 {
@@ -69,6 +77,11 @@ int main()
 {
     printf("Service 1: %s, $%d\n", wax, waxValue);
     cost1 = waxValue;
+}
+    else if((strcmp(userInput1, "-") == 0))
+{
+    printf("Service 1: No service\n");
+    cost1 = 0;
 }
     if((strcmp(userInput3, "Oil") == 0) && (strcmp(userInput4, "change") == 0))
 {
