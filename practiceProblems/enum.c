@@ -25,18 +25,19 @@
 int main()
 {
     enum GroceryItem {GR_APPLES, GR_BANANAS, GR_JUICE, GR_WATER};
-    enum GroceryItem userItem;
-
-    userItem = GR_APPLES;
-
-    switch(userItem) {
+    int userInput;
+    
+    printf("Enter Item Selected\n");
+    printf("0 = Apples, 1 = Bananas, 2 = Juice, 3 = Water\n");
+    scanf("%d", &userInput);
+    switch(userInput) {
         case 0:
-            printf("Fruit\n");
         case 1:
+            printf("Fruit\n");
             break;
         case 2:
-            printf("Drink\n");
         case 3:
+            printf("Drink\n");
             break;
         default:
             printf("Unknown\n");
