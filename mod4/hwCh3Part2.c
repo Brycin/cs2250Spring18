@@ -108,6 +108,7 @@ int main()
     printf("Service 2: No service\n");
     cost2 = 0;
 }
+
     totalCost = cost1 + cost2;
     printf("\nTotal: $%d\n", totalCost);
 
