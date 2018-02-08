@@ -29,6 +29,33 @@ int main()
     int arrowBaseHeight;
     int arrowHeadWidth;
 
+    printf("Enter arrow base height:\n");
+    scanf("%d", &arrowBaseHeight);
+    printf("Enter arrow base width:\n");
+    scanf("%d", &arrowBaseWidth);
+    printf("Enter arrow head width:\n");
+    scanf("%d", &arrowHeadWidth);
+
+    int i;
+    int j;
+
+    for(i = 1; i <= arrowBaseHeight; i++)
+    {
+        for(j = 1; j<= arrowBaseWidth; j++)
+        {
+            printf("%c", arrowChar);
+        }
+        printf("\n");
+    }
+    for(i = arrowHeadWidth; i > 0; i--)
+    {
+        for(j = i; j > 0; j--)
+        {
+            printf("%c", arrowChar);
+        }
+        printf("\n");
+    }
+
     return 0;
 }
 // Function Definitions
