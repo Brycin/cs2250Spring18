@@ -35,12 +35,13 @@ int main()
     //4. ELSE print guess lower
     //5. You get 5 chances
     //6. Display all choices they've entered
-
+    //7. Ask if they want to play again. IF 'y' repeat loop 
     srand((int)(time(0)));
     int input[LEN];
-    int randNum = (rand() % NUM);
+    int randNum = 0;
     int i;
     int opp = 0;
+    char repeat;
     //printf("Guess a number between 0-%d\n", NUM);
     //For loop way:
     // for(i = 0; (i < LEN) && (input[i] != randNum); ++i)
@@ -62,33 +63,37 @@ int main()
     //     }
     // }
     // While loop way:
-
+    repeat = 'y';
+    do //Do this while condition is true
+    {
+        randNum = (rand() % NUM);
+        
         printf("You have %d guesses.\n", LEN);
         printf("Please enter a number betweeen 0-%d\n", NUM);
 
-    while(opp < LEN)
-    {
-        scanf("%d", &input[opp]);
-        printf("You entered: %d\n", input[opp]);
-        if(input[opp] > NUM || input[opp] < 0)
+        while(opp < LEN)
         {
-            continue; //Takes user back to top of loop if invalid input
+            scanf("%d", &input[opp]);
+            printf("You entered: %d\n", input[opp]);
+            if(input[opp] > NUM || input[opp] < 0)
+            {
+                continue; //Takes user back to top of loop if invalid input
+            }
+            if(input[opp] < randNum)
+            {
+                printf("Guess higher\n");
+            }
+            else if(input[opp] > randNum)
+            {
+                printf("Guess lower\n");
+            }
+            else
+            {
+                printf("You got it!\n");
+                break;
+            }
+            ++opp;
         }
-        if(input[opp] < randNum)
-        {
-            printf("Guess higher\n");
-        }
-        else if(input[opp] > randNum)
-        {
-            printf("Guess lower\n");
-        }
-        else
-        {
-            printf("You got it!\n");
-            break;
-        }
-        ++opp;
-    }
 
         if (input[LEN] != randNum && opp == LEN)
         {
@@ -96,11 +101,24 @@ int main()
         }
 
         printf("Your guesses:");
-    for(i = 0; i <= opp; ++i)
-    {
-        printf(" %d", input[i]);
+        for(i = 0; i <= opp; ++i)
+        {
+            printf(" %d", input[i]);
+        }
+        printf("\nRandom number is: %d\n", randNum);
+
+        printf("Do you want to play again? [y/n]\n");
+        //Remember to take ENTER key into consideration
+        scanf(" %c", &repeat);
+
+        if(repeat != 'n' && repeat != 'y')
+        {
+            printf("Invalid entry\n");
+        }
+        opp = 0; //Reset value
     }
-    printf("\nRandom number is: %d\n", randNum);
+        while(repeat == 'y');//Condition
+    
     return 0;
 }
 // Function Definitions
