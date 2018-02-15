@@ -32,6 +32,9 @@ int main()
     int jerseyArray[PLAYERS];
     int ratingArray[PLAYERS];
     int i;
+    char option = 'r';
+    int userInputNum;
+    int userInputRat;
 
     for(i =0; i < PLAYERS; ++i)
     {
@@ -46,7 +49,41 @@ int main()
     {
         printf("Player %d -- Jersey number: %d, Rating: %d\n", i + 1, jerseyArray[i], ratingArray[i]);
     }
-
+    //Add Menu for editing
+    printf("\n");
+    printf("MENU\n");
+    printf("u - Update player rating\n");
+    printf("a - Output players above a rating\n");
+    printf("r - Replace player\n");
+    printf("o - Output roster\n");
+    printf("q - Quit\n");
+    printf("\n");
+    while(option != 'q')
+    {
+        printf("Choose an option:\n");
+        scanf(" %c", &option);
+        if(option == 'u')
+        {
+            printf("Enter a jersey number:\n");
+            scanf("%d", &userInputNum);
+            printf("Enter a new rating for player:\n");
+            scanf("%d", &userInputRat);
+            //Run for loop to compare index[i] to jersey number
+        }
+        if(option == 'a')
+        {
+        }
+        if(option == 'r')
+        {
+    for(i = 0; i < PLAYERS; ++i)
+    {
+        printf("Player %d -- Jersey number: %d, Rating: %d\n", i + 1, jerseyArray[i], ratingArray[i]);
+    }
+        }
+        if(option == 'o')
+        {
+        }
+    } //End of while loop
 
     return 0;
 }
