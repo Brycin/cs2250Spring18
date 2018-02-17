@@ -19,7 +19,6 @@
 
 // Constants
 const int PLAYERS = 5;
-const int ATTRIBUTES = 2;
 
 // Function Prototypes
 
@@ -51,17 +50,18 @@ int main()
         printf("Player %d -- Jersey number: %d, Rating: %d\n", i + 1, jerseyArray[i], ratingArray[i]);
     }
     //Add Menu for editing
-    printf("\n");
-    printf("MENU\n");
-    printf("u - Update player rating\n");
-    printf("a - Output players above a rating\n");
-    printf("r - Replace player\n");
-    printf("o - Output roster\n");
-    printf("q - Quit\n");
-    printf("\n");
     while(option != 'q')
     {
+        printf("\n");
+        printf("MENU\n");
+        printf("u - Update player rating\n");
+        printf("a - Output players above a rating\n");
+        printf("r - Replace player\n");
+        printf("o - Output roster\n");
+        printf("q - Quit\n");
+        printf("\n");
         printf("Choose an option:\n");
+
         scanf(" %c", &option);
         if(option == 'u')
         {
@@ -84,7 +84,6 @@ int main()
         {
             printf("Enter a rating:\n");
             scanf("%d", &userInputRat);
-            printf("\n");
             printf("ABOVE %d\n", userInputRat);
             for(i = 0; i < PLAYERS; ++i)
             {
@@ -96,10 +95,11 @@ int main()
         }
         if(option == 'o')
         {
-    for(i = 0; i < PLAYERS; ++i)
-    {
-        printf("Player %d -- Jersey number: %d, Rating: %d\n", i + 1, jerseyArray[i], ratingArray[i]);
-    }
+            printf("ROSTER\n");
+            for(i = 0; i < PLAYERS; ++i)
+            {
+                printf("Player %d -- Jersey number: %d, Rating: %d\n", i + 1, jerseyArray[i], ratingArray[i]);
+            }
         }
         if(option == 'r')
         {
@@ -111,8 +111,7 @@ int main()
             scanf("%d", &userInputRat);
             i = 0;
             while(i < PLAYERS)
-            {
-                if(jerseyArray[i] == userInputNum)
+            { if(jerseyArray[i] == userInputNum)
                 {
                     jerseyArray[i] = newNum;
                     ratingArray[i] = userInputRat;
@@ -121,6 +120,10 @@ int main()
                 ++i;
             }
 
+        }
+        else
+        {
+            continue;
         }
     } //End of while loop
 
