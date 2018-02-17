@@ -81,56 +81,6 @@ int main()
                 }
             }
         }
-        //  for(i = 0; i < 10; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n");
-        //  for(i = 10; i < 20; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n");
-        //  for(i = 20; i < 30; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n");
-        //  for(i = 30; i < 40; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n");
-        //  for(i = 40; i < 50; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n");
-        //  for(i = 50; i < 60; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n");
-        //  for(i = 60; i < 70; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n");
-        //  for(i = 70; i < 80; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n");
-        //  for(i = 80; i < 90; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n");
-        //  for(i = 90; i < 100; ++i)
-        //  {
-        //      printf("%d ", randArray[i]);
-        //  }
-        //  printf("\n\n");
 
         else if(option == 'h')
         {
@@ -177,6 +127,16 @@ int main()
             continue;
         }
     }
+   // for(i=0; i < NUM_ROLLS; ++i)
+   // {
+   //     if((i %10) == 0)
+   //     {
+   //         printf("\n");
+   //     }
+   //     printf("%d ", randArray[i]);
+   // }
+   // printf("\n");
+
     return 0;
 
 }
