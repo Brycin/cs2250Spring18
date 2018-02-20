@@ -23,6 +23,7 @@
 // Constants
 
 // Function Prototypes
+char Menu(void);
 int Sum(double num1, double num2);
 double Prod(double num1, double num2);
 
@@ -31,16 +32,39 @@ int main()
 {
     double userNum1;
     double userNum2;
+    char in;
     printf("Enter first number:\n");
     scanf("%lf", &userNum1);
     printf("Enter second number:\n");
     scanf("%lf", &userNum2);
-    printf("The integer sum of %lf and %lf is: %d\n", userNum1, userNum2, Sum(userNum1, userNum2));
-    printf("The product of %lf and %lf is: %lf\n", userNum1, userNum2, Prod(userNum1, userNum2));
+    in = Menu();
+    switch(in)
+    {
+        case 's':
+            printf("The integer sum of %lf and %lf is: %d\n", userNum1, userNum2, Sum(userNum1, userNum2));
+            break;
+        case 'p':
+            printf("The product of %lf and %lf is: %lf\n", userNum1, userNum2, Prod(userNum1, userNum2));
+            break;
+        case 'q':
+            break;
+     }
+
 
     return 0;
 }
 // Function Definitions
+// If input is s get sum if p get product if q quit
+char Menu(void)
+{
+    char in = 'n';
+    printf("What do you want to do? s = [sum], p = [product] q = [qut]");
+    scanf(" %c", &in);
+    return in;
+}
+
+
+
 // Returns Sum of two numbers
 int Sum(double num1, double num2)
 {
