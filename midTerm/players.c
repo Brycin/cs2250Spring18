@@ -22,6 +22,10 @@ const int NUM_PLAYERS = 5;
 
 // Function Prototypes
 void InitPlayers(int jerseyNums[], int ratingNums[]);
+void PrintRoster(int jerseyNums[], int ratingNums[]);
+char DisplayMenu(void);
+void UpdatePlayer(int jerseyNums[], int ratingNums[]);
+
 // Main Function
 int main(void) 
 {
@@ -36,44 +40,20 @@ int main(void)
     // 1. Initialize players
     InitPlayers(jerseyNums, ratingNums);
 
+    // 2. Print roster
+    PrintRoster(jerseyNums, ratingNums);
 
-    // Print roster
-    printf("ROSTER\n");
-    for (i = 0; i < NUM_PLAYERS; ++i) 
-    {
-        printf("Player %d -- Jersey number: %d, Rating: %d\n", (i + 1), jerseyNums[i], ratingNums[i]);
-    }
-
-    // Menu
     do {
-        printf("\nMENU\n");
-        printf("u - Update player rating\n");
-        printf("a - Output players above a rating\n");
-        printf("r - Replace player\n");
-        printf("o - Output roster\n");
-        printf("q - Quit\n");
-
-        printf("\nChoose an option:\n");
-        scanf(" %c", &menuOp);
+    // 3. Display Menu
+    menuOp = DisplayMenu();
 
 
         //Update
         if (menuOp == 'u') 
         {
-            printf("Enter a jersey number:\n");
-            scanf("%d", &playerJersy);
-
-            printf("Enter a new rating for player:\n");
-            scanf("%d", &playerRating);
-
-            for (i = 0; i < NUM_PLAYERS; ++i) 
-            {
-                if (jerseyNums[i] == playerJersy) 
-                {
-                    ratingNums[i] = playerRating;
-                }
-            }
+            UpdatePlayer(jerseyNums, ratingNums);
         }
+
 
         // Output players above a user defined rating
         else if (menuOp == 'a') 
@@ -123,11 +103,7 @@ int main(void)
         // Output roster
         else if (menuOp == 'o') 
         {
-            printf("ROSTER\n");
-            for (i = 0; i < NUM_PLAYERS; ++i) 
-            {
-                printf("Player %d -- Jersey number: %d, Rating: %d\n", (i + 1), jerseyNums[i], ratingNums[i]);
-            }
+            PrintRoster(jerseyNums, ratingNums);
         }
     } while(menuOp != 'q');
 
@@ -146,6 +122,49 @@ void InitPlayers(int jerseyNums[], int ratingNums[])
         printf("Enter player %d's rating:\n", (i + 1));
         scanf("%d", &(ratingNums[i]));
         printf("\n");
+    }
+    return;
+}
+void PrintRoster(int jerseyNums[], int ratingNums[])
+{
+    // Print roster
+    printf("ROSTER\n");
+    for (int i = 0; i < NUM_PLAYERS; ++i) 
+    {
+        printf("Player %d -- Jersey number: %d, Rating: %d\n", (i + 1), jerseyNums[i], ratingNums[i]);
+    }
+    return;
+}
+char DisplayMenu(void)
+{
+    char menuOp;
+    // Menu
+        printf("\nMENU\n");
+        printf("u - Update player rating\n");
+        printf("a - Output players above a rating\n");
+        printf("r - Replace player\n");
+        printf("o - Output roster\n");
+        printf("q - Quit\n");
+
+        printf("\nChoose an option:\n");
+        scanf(" %c", &menuOp);
+
+        return menuOp;
+}
+void UpdatePlayer(int jerseyNums[], int ratingNums[])
+{
+    printf("Enter a jersey number:\n");
+    scanf("%d", &playerJersy);
+
+    printf("Enter a new rating for player:\n");
+    scanf("%d", &playerRating);
+
+    for (i = 0; i < NUM_PLAYERS; ++i) 
+    {
+        if (jerseyNums[i] == playerJersy) 
+        {
+            ratingNums[i] = playerRating;
+        }
     }
     return;
 }
