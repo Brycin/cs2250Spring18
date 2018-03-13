@@ -17,19 +17,16 @@
  */
 #include <stdio.h>
 #include <string.h>
+#include "superlib.h"
 
-// Constants
+
 const int INPUT_STR_SIZE = 50; //Input string size
-
-// Function Prototypes
-void StrSpaceToHyphen(char modString[], char separator);
-
 // Main Function
 int main()
 {
     char userStr[INPUT_STR_SIZE]; //Input string from user
     char userChar; //Input separator from user
-
+    int digits; //Returned value from StrCountDigits function
     //Prompt user for input
     printf("Enter string with spaces: \n");
     fgets(userStr, INPUT_STR_SIZE, stdin);
@@ -41,21 +38,13 @@ int main()
 
     printf("String with separator: %s\n", userStr);
 
+    digits = StrCountDigits(userStr);
+    printf("Your string has %d digits\n", digits);
+
+
     return 0;
 }
-// Function Definitions
-void StrSpaceToHyphen(char modString[], char separator)
-{
-    int i = 0; // Loop index
-    for (i = 0; i < strlen(modString); ++i)
-    {
-        if (modString[i] == ' ')
-        {
-            modString[i] = separator;
-        }
-    }
-    return;
-}
+
 
 
 
