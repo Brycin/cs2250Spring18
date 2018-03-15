@@ -1,0 +1,29 @@
+commit eeb4213b8e7a8bdf75aa708e4f119016b42c1877
+Author: Brycin <brycinsilvester@mail.weber.edu>
+Date:   Thu Mar 1 09:59:25 2018 -0700
+
+    Final commit
+
+commit e30457a4f57f15c71af07ec56b62b7ed8e273424
+Author: Brycin <brycinsilvester@mail.weber.edu>
+Date:   Thu Mar 1 09:58:51 2018 -0700
+
+    Figured out precision
+
+commit 9026d4cb7b7f5437857470d941068dd020123b1a
+Author: Brycin <brycinsilvester@mail.weber.edu>
+Date:   Thu Mar 1 09:34:14 2018 -0700
+
+    Still need to figure out decimal precision
+
+commit a06034831c7add3255fcafffcd535bad7342d66d
+Author: Brycin <brycinsilvester@mail.weber.edu>
+Date:   Thu Mar 1 09:24:05 2018 -0700
+
+    Still need to figure out decimal precision
+
+commit 45b6de75b528baa00f3cb090f6431e305e41b206
+Author: Brycin <brycinsilvester@mail.weber.edu>
+Date:   Thu Mar 1 09:02:10 2018 -0700
+
+    Need to fix decimal precision
