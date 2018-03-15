@@ -16,12 +16,15 @@
  * =====================================================================================
  */
 #include <stdio.h>
+#include <ctype.h>
+#include <string.h>
 
 
 // Constants
+const int STRSIZE = 128;
 
 // Function Prototypes
-int GetNumOfCharachters(char userInput[]);
+int GetNumOfCharacters(char userInput[]);
 void OutputWithoutWhitespace(char userInput[]);
 
 // Main Function
@@ -30,9 +33,9 @@ int main()
     char userInput[100];
     int numChars;
     printf("Enter a sentence or phrase: \n");
-    fgets(userInput, 100, stdin);
+    fgets(userInput, 128, stdin);
     printf("You entered: %s\n", userInput);
-    numChars = GetNumOfCharachters(userInput);
+    numChars = GetNumOfCharacters(userInput);
     printf("Number of characters: %d\n", numChars);
     OutputWithoutWhitespace(userInput);
 
@@ -40,7 +43,7 @@ int main()
     return 0;
 }
 // Function Definition
-int GetNumOfCharachters(char userInput[])
+int GetNumOfCharacters(char userInput[])
 {
     int numChars = 0;
 
@@ -53,9 +56,9 @@ int GetNumOfCharachters(char userInput[])
 void OutputWithoutWhitespace(char userInput[])
 {
     printf("String with no whitespace: ");
-    for(int i = 0; userInput[i] != '\n'; ++i)
+    for(int i = 0; i < strlen(userInput); ++i)
     {
-        if(userInput[i] == ' ' || userInput[i] == '\t')
+        if(isspace(userInput[i]))
         {
             continue;
         }
