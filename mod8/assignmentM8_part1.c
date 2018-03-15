@@ -30,13 +30,13 @@ void OutputWithoutWhitespace(char userInput[]);
 // Main Function
 int main()
 {
-    char userInput[100];
+    char userInput[128];
     int numChars;
-    printf("Enter a sentence or phrase: \n");
+    printf("Enter a sentence or phrase:\n");
     fgets(userInput, 128, stdin);
-    printf("You entered: %s\n", userInput);
+    printf("\nYou entered: %s\n", userInput);
     numChars = GetNumOfCharacters(userInput);
-    printf("Number of characters: %d\n", numChars);
+    printf("\nNumber of characters: %d\n", numChars);
     OutputWithoutWhitespace(userInput);
 
 
@@ -47,7 +47,7 @@ int GetNumOfCharacters(char userInput[])
 {
     int numChars = 0;
 
-    for(int i = 0; userInput[i] != '\n'; ++i)
+    for(int i = 0; i < strlen(userInput); ++i)
     {
         ++numChars;
     }
