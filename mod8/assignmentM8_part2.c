@@ -26,6 +26,7 @@ const int STRING_SIZE = 256;
 char PrintMenu(void);
 int GetNumOfNonWSCharacters(char userInput[STRING_SIZE]);
 int GetNumOfWords(char userInput[STRING_SIZE]);
+char *FixCapitalization(char userInput[STRING_SIZE]);
 
 // Main Function
 int main()
@@ -48,6 +49,12 @@ int main()
         else if(userChar == 'w')
         {
             printf("Number of words: %d\n", GetNumOfWords(userInput));
+            printf("\n");
+            userChar = PrintMenu();
+        }
+        else if(userChar == 'f')
+        {
+            printf("%s\n", FixCapitalization(userInput));
             printf("\n");
             userChar = PrintMenu();
         }
@@ -104,4 +111,17 @@ int GetNumOfWords(char userInput[STRING_SIZE])
         }
     }
     return numWords;
+}
+
+char *FixCapitalization(char userInput[STRING_SIZE])
+{
+    for(int i = 0; i < strlen(userInput); ++i)
+    {
+        if((ispunct(userInput[i])))
+        {
+            userInput[i + 2] = toupper(userInput[i + 2]);
+        }
+    }
+
+    return userInput;
 }
