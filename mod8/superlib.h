@@ -15,10 +15,12 @@
  *
  * =====================================================================================
  */
+
 #ifndef __SUPERLIB_H__
 #define __SUPERLIB_H__
 // Constants
-//const int INPUT_STR_SIZE = 50; //Input string size
+// inside header files add the key work static before the constant definition
+static const int INPUT_STR_SIZE = 50; //Input string size
 
 // Function Prototypes
 void StrSpaceToHyphen(char modString[], char separator);
