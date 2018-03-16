@@ -27,6 +27,7 @@ char PrintMenu(void);
 int GetNumOfNonWSCharacters(char userInput[STRING_SIZE]);
 int GetNumOfWords(char userInput[STRING_SIZE]);
 char *FixCapitalization(char userInput[STRING_SIZE]);
+char *ReplaceExclamation(char userInput[STRING_SIZE]);
 
 // Main Function
 int main()
@@ -54,7 +55,13 @@ int main()
         }
         else if(userChar == 'f')
         {
-            printf("%s\n", FixCapitalization(userInput));
+            printf("Edited text: %s\n", FixCapitalization(userInput));
+            printf("\n");
+            userChar = PrintMenu();
+        }
+        else if(userChar == 'r')
+        {
+            printf("Edited text: %s\n", ReplaceExclamation(userInput));
             printf("\n");
             userChar = PrintMenu();
         }
@@ -115,9 +122,13 @@ int GetNumOfWords(char userInput[STRING_SIZE])
 
 char *FixCapitalization(char userInput[STRING_SIZE])
 {
+    if(isalpha(userInput[0]))
+    {
+        userInput[0] = toupper(userInput[0]);
+    }
     for(int i = 0; i < strlen(userInput); ++i)
     {
-        if((ispunct(userInput[i])))
+        if((userInput[i] == '.') || (userInput[i] =='!') || (userInput[i] == '?'))
         {
             userInput[i + 2] = toupper(userInput[i + 2]);
         }
@@ -125,3 +136,16 @@ char *FixCapitalization(char userInput[STRING_SIZE])
 
     return userInput;
 }
+
+char *ReplaceExclamation(char userInput[STRING_SIZE])
+{
+    for(int i = 0; i < strlen(userInput); ++i)
+    {
+        if(userInput[i] == '!')
+        {
+            userInput[i] = '.';
+        }
+    }
+    return userInput;
+}
+
