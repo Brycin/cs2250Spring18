@@ -26,8 +26,8 @@ const int STRING_SIZE = 256;
 char PrintMenu(void);
 int GetNumOfNonWSCharacters(char userInput[STRING_SIZE]);
 int GetNumOfWords(char userInput[STRING_SIZE]);
-char *FixCapitalization(char userInput[STRING_SIZE]);
-char *ReplaceExclamation(char userInput[STRING_SIZE]);
+void FixCapitalization(char userInput[STRING_SIZE]);
+void ReplaceExclamation(char userInput[STRING_SIZE]);
 void ShortenSpace(char userInput[STRING_SIZE]);
 
 // Main Function
@@ -56,20 +56,17 @@ int main()
         }
         else if(userChar == 'f')
         {
-            printf("Edited text: %s\n", FixCapitalization(userInput));
-            printf("\n");
+            FixCapitalization(userInput);
             userChar = PrintMenu();
         }
         else if(userChar == 'r')
         {
-            printf("Edited text: %s\n", ReplaceExclamation(userInput));
-            printf("\n");
+            ReplaceExclamation(userInput);
             userChar = PrintMenu();
         }
         else if(userChar == 's')
         {
             ShortenSpace(userInput);
-            printf("\n");
             userChar = PrintMenu();
         }
         else
@@ -91,7 +88,7 @@ char PrintMenu(void)
     printf("r - Replace all !'s\n");
     printf("s - Shorten spaces\n");
     printf("q - Quit\n\n");
-    printf("Choose an option\n");
+    printf("Choose an option:\n");
     scanf(" %c", &userChar);
 
     return userChar;
@@ -135,7 +132,7 @@ int GetNumOfWords(char userInput[STRING_SIZE])
     return numWords;
 }
 
-char *FixCapitalization(char userInput[STRING_SIZE])
+void FixCapitalization(char userInput[STRING_SIZE])
 {
     if(isalpha(userInput[0]))
     {
@@ -151,15 +148,14 @@ char *FixCapitalization(char userInput[STRING_SIZE])
                 ++j;
             }
             userInput[j] = toupper(userInput[j]);
-
-
         }
     }
 
-    return userInput;
+    printf("Edited text: %s\n", userInput);
+    return;
 }
 
-char *ReplaceExclamation(char userInput[STRING_SIZE])
+void ReplaceExclamation(char userInput[STRING_SIZE])
 {
     for(int i = 0; i < strlen(userInput); ++i)
     {
@@ -168,7 +164,8 @@ char *ReplaceExclamation(char userInput[STRING_SIZE])
             userInput[i] = '.';
         }
     }
-    return userInput;
+    printf("Edited text: %s\n", userInput);
+    return;
 }
 
 void ShortenSpace(char userInput[STRING_SIZE])
@@ -192,5 +189,6 @@ void ShortenSpace(char userInput[STRING_SIZE])
             printf("%c", userInput[i]);
         }
     }
+    printf("\n");
     return;
 }
