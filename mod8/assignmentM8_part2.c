@@ -28,6 +28,7 @@ int GetNumOfNonWSCharacters(char userInput[STRING_SIZE]);
 int GetNumOfWords(char userInput[STRING_SIZE]);
 char *FixCapitalization(char userInput[STRING_SIZE]);
 char *ReplaceExclamation(char userInput[STRING_SIZE]);
+void ShortenSpace(char userInput[STRING_SIZE]);
 
 // Main Function
 int main()
@@ -62,6 +63,12 @@ int main()
         else if(userChar == 'r')
         {
             printf("Edited text: %s\n", ReplaceExclamation(userInput));
+            printf("\n");
+            userChar = PrintMenu();
+        }
+        else if(userChar == 's')
+        {
+            ShortenSpace(userInput);
             printf("\n");
             userChar = PrintMenu();
         }
@@ -112,9 +119,17 @@ int GetNumOfWords(char userInput[STRING_SIZE])
     int numWords = 0;
     for(int i = 0; i < strlen(userInput); ++i)
     {
-        if(isspace(userInput[i]) || userInput[i] == '\0')
+        while(isspace(userInput[i]))
         {
-            ++numWords;
+            ++i;
+            if(isalpha(userInput[i]))
+            {
+                ++numWords;
+            }
+            else if(userInput[i] == '\0')
+            {
+                ++numWords;
+            }
         }
     }
     return numWords;
@@ -130,7 +145,14 @@ char *FixCapitalization(char userInput[STRING_SIZE])
     {
         if((userInput[i] == '.') || (userInput[i] =='!') || (userInput[i] == '?'))
         {
-            userInput[i + 2] = toupper(userInput[i + 2]);
+            int j = i + 1;
+            while(isalpha(userInput[j]) == 0)
+            {
+                ++j;
+            }
+            userInput[j] = toupper(userInput[j]);
+
+
         }
     }
 
@@ -149,3 +171,26 @@ char *ReplaceExclamation(char userInput[STRING_SIZE])
     return userInput;
 }
 
+void ShortenSpace(char userInput[STRING_SIZE])
+{
+    printf("Edited text: ");
+    for(int i = 0; i < strlen(userInput); ++i)
+    {
+        if(isspace(userInput[i]))
+        {
+            if(isspace(userInput[i + 1]))
+            {
+                continue;
+            }
+            else
+            {
+                printf("%c", userInput[i]);
+            }
+        }
+        else
+        {
+            printf("%c", userInput[i]);
+        }
+    }
+    return;
+}
