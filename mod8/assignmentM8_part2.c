@@ -23,9 +23,9 @@
 const int STRING_SIZE = 256;
 
 // Function Prototypes
-char PrintMenu(void);
-int GetNumOfNonWSCharacters(char userInput[STRING_SIZE]);
-int GetNumOfWords(char userInput[STRING_SIZE]);
+char PrintMenu(char userInput[STRING_SIZE]);
+int GetNumOfNonWSCharacters(const char userInput[STRING_SIZE]);
+int GetNumOfWords(const char userInput[STRING_SIZE]);
 void FixCapitalization(char userInput[STRING_SIZE]);
 void ReplaceExclamation(char userInput[STRING_SIZE]);
 void ShortenSpace(char userInput[STRING_SIZE]);
@@ -39,46 +39,21 @@ int main()
     printf("Enter a sample text:\n");
     fgets(userInput, STRING_SIZE, stdin);
     printf("\nYou entered: %s\n", userInput);
-    userChar = PrintMenu();
+    userChar = PrintMenu(userInput);
     while(userChar != 'q')
     {
-        if(userChar == 'c')
-        {
-            printf("Number of non-whitespace characters: %d\n", GetNumOfNonWSCharacters(userInput));
+            userChar = PrintMenu(userInput);
             printf("\n");
-            userChar = PrintMenu();
-        }
-        else if(userChar == 'w')
-        {
-            printf("Number of words: %d\n", GetNumOfWords(userInput));
-            printf("\n");
-            userChar = PrintMenu();
-        }
-        else if(userChar == 'f')
-        {
-            FixCapitalization(userInput);
-            userChar = PrintMenu();
-        }
-        else if(userChar == 'r')
-        {
-            ReplaceExclamation(userInput);
-            userChar = PrintMenu();
-        }
-        else if(userChar == 's')
-        {
-            ShortenSpace(userInput);
-            userChar = PrintMenu();
-        }
-        else
-        {
-            userChar = PrintMenu();
-            printf("\n");
-        }
     }
     return 0;
 }
 // Function Definitions
-char PrintMenu(void)
+// This function prints a menu and accepts a user option
+// It calls another function based on user input
+// After operation it returns character to Main and
+// as long as char isn't q it will output the menu again
+// for another option
+char PrintMenu(char userInput[STRING_SIZE])
 {
     char userChar;
     printf("MENU\n");
@@ -90,11 +65,37 @@ char PrintMenu(void)
     printf("q - Quit\n\n");
     printf("Choose an option:\n");
     scanf(" %c", &userChar);
+    if(userChar == 'c')
+        {
+            printf("Number of non-whitespace characters: %d\n", GetNumOfNonWSCharacters(userInput));
+            printf("\n");
+        }
+        else if(userChar == 'w')
+        {
+            printf("Number of words: %d\n", GetNumOfWords(userInput));
+            printf("\n");
+        }
+        else if(userChar == 'f')
+        {
+            FixCapitalization(userInput);
+        }
+        else if(userChar == 'r')
+        {
+            ReplaceExclamation(userInput);
+        }
+        else if(userChar == 's')
+        {
+            ShortenSpace(userInput);
+        }
+
 
     return userChar;
 }
 
-int GetNumOfNonWSCharacters(char userInput[STRING_SIZE])
+//Counts the number of characters the user inputs. This includes
+//everything except white space chars. It returns integer value
+//for the number of characters.
+int GetNumOfNonWSCharacters(const char userInput[STRING_SIZE])
 {
     int numNonWS = 0;
     for(int i = 0; i < strlen(userInput); ++i)
@@ -111,7 +112,9 @@ int GetNumOfNonWSCharacters(char userInput[STRING_SIZE])
     return numNonWS;
 }
 
-int GetNumOfWords(char userInput[STRING_SIZE])
+//Counts the number of words that are input by the user
+//and returns the integer value for number of words.
+int GetNumOfWords(const char userInput[STRING_SIZE])
 {
     int numWords = 0;
     for(int i = 0; i < strlen(userInput); ++i)
@@ -132,6 +135,9 @@ int GetNumOfWords(char userInput[STRING_SIZE])
     return numWords;
 }
 
+//Capitalizes first letter in the string and then checks
+//for punctuation marks (. ? !) and capitalizes the next
+//letter it comes across
 void FixCapitalization(char userInput[STRING_SIZE])
 {
     if(isalpha(userInput[0]))
@@ -155,6 +161,7 @@ void FixCapitalization(char userInput[STRING_SIZE])
     return;
 }
 
+//Finds and ! in the string and replaces it with a .
 void ReplaceExclamation(char userInput[STRING_SIZE])
 {
     for(int i = 0; i < strlen(userInput); ++i)
@@ -168,6 +175,9 @@ void ReplaceExclamation(char userInput[STRING_SIZE])
     return;
 }
 
+//Checks for multiple spaces in a row and removes
+//any extra spaces so that there is only one space
+//between words.
 void ShortenSpace(char userInput[STRING_SIZE])
 {
     printf("Edited text: ");
