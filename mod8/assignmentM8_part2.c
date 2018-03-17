@@ -42,7 +42,7 @@ int main()
     userChar = PrintMenu(userInput);
     while(userChar != 'q')
     {
-            userChar = PrintMenu(userInput);
+        userChar = PrintMenu(userInput);
     }
     return 0;
 }
@@ -65,27 +65,28 @@ char PrintMenu(char userInput[STRING_SIZE])
     printf("Choose an option:\n");
     scanf(" %c", &userChar);
     if(userChar == 'c')
-        {
-            printf("Number of non-whitespace characters: %d\n", GetNumOfNonWSCharacters(userInput));
-            printf("\n");
-        }
-        else if(userChar == 'w')
-        {
-            printf("Number of words: %d\n", GetNumOfWords(userInput));
-            printf("\n");
-        }
-        else if(userChar == 'f')
-        {
-            FixCapitalization(userInput);
-        }
-        else if(userChar == 'r')
-        {
-            ReplaceExclamation(userInput);
-        }
-        else if(userChar == 's')
-        {
-            ShortenSpace(userInput);
-        }
+    {
+        printf("Number of non-whitespace characters: %d\n", GetNumOfNonWSCharacters(userInput));
+        printf("\n");
+    }
+    else if(userChar == 'w')
+    {
+        printf("Number of words: %d\n", GetNumOfWords(userInput));
+        printf("\n");
+    }
+    else if(userChar == 'f')
+    {
+        FixCapitalization(userInput);
+    }
+    else if(userChar == 'r')
+    {
+        ReplaceExclamation(userInput);
+    }
+    else if(userChar == 's')
+    {
+        ShortenSpace(userInput);
+        printf("Edited text: %s\n", userInput);
+    }
 
 
     return userChar;
@@ -127,9 +128,9 @@ int GetNumOfWords(const char userInput[STRING_SIZE])
             }
         }
         if(userInput[i] == '\0')
-            {
-                ++numWords;
-            }
+        {
+            ++numWords;
+        }
     }
     return numWords;
 }
@@ -205,7 +206,5 @@ void ShortenSpace(char userInput[STRING_SIZE])
         ++j;
     }
     strcpy(userInput, fixSpaces);
-    printf("Edited text: %s\n", userInput);
-    printf("\n");
     return;
 }
