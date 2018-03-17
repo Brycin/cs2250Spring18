@@ -183,7 +183,7 @@ void ShortenSpace(char userInput[STRING_SIZE])
     int j = 0;
     char fixSpaces[STRING_SIZE];
 
-    while(userInput[i] != '\n')
+    while(i < strlen(userInput))
     {
         if(isspace(userInput[i]))
         {
