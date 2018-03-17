@@ -43,7 +43,6 @@ int main()
     while(userChar != 'q')
     {
             userChar = PrintMenu(userInput);
-            printf("\n");
     }
     return 0;
 }
@@ -117,7 +116,7 @@ int GetNumOfNonWSCharacters(const char userInput[STRING_SIZE])
 int GetNumOfWords(const char userInput[STRING_SIZE])
 {
     int numWords = 0;
-    for(int i = 0; i < strlen(userInput); ++i)
+    for(int i = 0; i <= strlen(userInput); ++i)
     {
         while(isspace(userInput[i]))
         {
@@ -126,11 +125,11 @@ int GetNumOfWords(const char userInput[STRING_SIZE])
             {
                 ++numWords;
             }
-            else if(userInput[i] == '\0')
+        }
+        if(userInput[i] == '\0')
             {
                 ++numWords;
             }
-        }
     }
     return numWords;
 }
@@ -180,25 +179,33 @@ void ReplaceExclamation(char userInput[STRING_SIZE])
 //between words.
 void ShortenSpace(char userInput[STRING_SIZE])
 {
-    printf("Edited text: ");
-    for(int i = 0; i < strlen(userInput); ++i)
+    int i = 0;
+    int j = 0;
+    char fixSpaces[STRING_SIZE];
+
+    while(userInput[i] != '\n')
     {
         if(isspace(userInput[i]))
         {
             if(isspace(userInput[i + 1]))
             {
+                ++i;
                 continue;
             }
             else
             {
-                printf("%c", userInput[i]);
+                fixSpaces[j] = userInput[i];
+                ++i;
+                ++j;
+                continue;
             }
         }
-        else
-        {
-            printf("%c", userInput[i]);
-        }
+        fixSpaces[j] = userInput[i];
+        ++i;
+        ++j;
     }
+    strcpy(userInput, fixSpaces);
+    printf("Edited text: %s\n", userInput);
     printf("\n");
     return;
 }
