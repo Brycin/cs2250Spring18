@@ -36,7 +36,7 @@ void ShowInfo(int age, double weight);
 void ShowInfoStruct(const SuperDude* sd); //Passes variable sd as type SuperDude structure
                                    //Structure definitions must come before fuctions
 void InitInfoStruct(SuperDude* sd); //Pass address of SuperDude type
-
+SuperDude CopyInfoStruct(const SuperDude* sd);//This creates a function that returns a SuperDude structure
 
 #endif /* ----- #ifndef DUDE__INC__ ----- */
 

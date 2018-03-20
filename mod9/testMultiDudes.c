@@ -26,10 +26,13 @@
 int main()
 {
     SuperDude s1; //Variable type SuperDude
+    SuperDude copy;
     InitInfoStruct(&s1); //Initialize variables
     //The address of SuperDude is passed so you must use & command to pass
     //the address instead of the value
     ShowInfoStruct(&s1); //Display variables
+    copy = CopyInfoStruct(&s1); //copy catches returned values from CopyInfoStruct
+    ShowInfoStruct(&copy); //Show what values were copied
 
     return 0;
 }

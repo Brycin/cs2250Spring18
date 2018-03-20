@@ -66,3 +66,19 @@ void InitInfoStruct(SuperDude* sd) //address of SuperDude is passed
     return;             //this same thing by dereferencing. This allows you to access value at the address
                         //-> and (*sd) are equivalent but -> is easier to remember
 }
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  CopyInfoStruct
+ *  Description:  Copies SuperDude
+ * =====================================================================================
+ */
+SuperDude CopyInfoStruct(const SuperDude* sd)
+{
+    SuperDude tempVals;
+    tempVals.age = sd->age;
+    tempVals.weight = sd->weight;
+    tempVals.sex = sd->sex;
+
+    return tempVals;
+}
