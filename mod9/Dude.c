@@ -41,11 +41,28 @@ void ShowInfo(int age, double weight)
      *  Description:  Displays SuperDude Info
      * =====================================================================================
      */
-void ShowInfoStruct(SuperDude sd)
+void ShowInfoStruct(const SuperDude* sd) //Passes a const address instead of value
+                                         //Values cannot be modified
+                                         //This makes processing faster
 {
-    printf("Your age is [%d]\n", sd.age);
-    printf("Your weight is [%.1f]\n", sd.weight);
-    printf("Your sex is [%c]\n", sd.sex);
+    printf("Your age is [%d]\n", sd->age);
+    printf("Your weight is [%.1f]\n", sd->weight);
+    printf("Your sex is [%c]\n", sd->sex);
     return;
 }
 
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  InitInfoStruct
+ *  Description:  Initializes structures values
+ * =====================================================================================
+ */
+void InitInfoStruct(SuperDude* sd) //address of SuperDude is passed
+                                  // sd is now a pointer
+{
+    sd->age = -99;      //When using the address of a structure use the -> operator to access
+    sd->weight = -99;   //The struct member instead of the . operator which is used when you
+    (*sd).sex = 'N';    //Have the structure not the address. (*sd).sex is another way to do 
+    return;             //this same thing by dereferencing. This allows you to access value at the address
+                        //-> and (*sd) are equivalent but -> is easier to remember
+}
