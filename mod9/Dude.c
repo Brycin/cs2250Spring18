@@ -3,7 +3,7 @@
  *
  *       Filename:  Dude.c
  *
- *    Description:  
+ *    Description:  Function Definitions for Dude.h library
  *
  *        Version:  1.0
  *        Created:  03/20/2018 09:19:15 AM
