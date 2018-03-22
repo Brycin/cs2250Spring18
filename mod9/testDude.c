@@ -34,7 +34,7 @@ int main()
     man2.age = 45;
     man2.weight = 278.6;
     man2.sex = 'M';
-    ShowInfoStruct(man2);
+    ShowInfoStruct(&man2);
 
     return 0;
 }
