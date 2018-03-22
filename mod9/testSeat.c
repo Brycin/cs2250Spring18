@@ -33,7 +33,7 @@ int main()
     SeatsMakeEmpty(allSeats, NUM_SEATS);
 
     while (userKey != 'q') {
-        printf("Enter command (p/r/q): ");
+        printf("Enter command (p/r/d/q): ");
         scanf(" %c", &userKey);
 
         if (userKey == 'p') { // Print seats
