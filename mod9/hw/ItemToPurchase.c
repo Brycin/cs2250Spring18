@@ -51,8 +51,7 @@ void MakeItemBlank(ItemToPurchase* item) //Make sure to dereference when trying 
 void PrintItemCost(ItemToPurchase item)
 {
     int cost = (item.itemQuantity * item.itemPrice);
-    printf("TOTAL COST\n");
-    printf("%s %d @ %d = %d\n", item.itemName, item.itemQuantity, item.itemPrice, cost);
+    printf("%s %d @ $%d = $%d\n", item.itemName, item.itemQuantity, item.itemPrice, cost);
     return;
 }
 
@@ -66,6 +65,6 @@ void PrintItemCost(ItemToPurchase item)
 
 void PrintItemDescription(ItemToPurchase item)
 {
-    
+    printf("%s: %s\n", item.itemName, item.itemDescription);
     return;
 }

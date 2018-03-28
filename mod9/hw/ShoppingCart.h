@@ -29,6 +29,7 @@ typedef struct ShoppingCart
 
 }ShoppingCart;
 
+char PrintMenu(ShoppingCart cart);
 ShoppingCart AddItem(ItemToPurchase item, ShoppingCart cart);
 ShoppingCart RemoveItem(char name[], ShoppingCart cart);
 ShoppingCart ModifyItem(ItemToPurchase item, ShoppingCart cart);
