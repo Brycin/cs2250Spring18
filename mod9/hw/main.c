@@ -26,6 +26,10 @@
 int main()
 {
     ShoppingCart cart;   // ShoppingCart variable for main
+    for(int i = 0; i < 10; ++i)
+    {
+        MakeItemBlank(&cart.cartItems[i]); //Initialize Array
+    }
     printf("Enter Customer's Name:\n");
     fgets(cart.customerName, 50, stdin);
     printf("Enter Today's Date:\n");
@@ -35,10 +39,10 @@ int main()
     printf("Today's Date: %s\n", cart.currentDate);
     char userChar;
     cart.cartSize = 0;   // Initializes number of items in cart to 0
-    userChar = PrintMenu(cart); // Gets userChar from PrintMenu
+    userChar = PrintMenu(&cart); // Gets userChar from PrintMenu
     while(userChar != 'q')
     {
-        userChar = PrintMenu(cart);
+        userChar = PrintMenu(&cart);
     }
     return 0;
 }

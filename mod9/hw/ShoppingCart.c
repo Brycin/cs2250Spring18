@@ -115,7 +115,7 @@ int GetNumItemsInCart(ShoppingCart cart)
     int itemTotal = 0;
     for(int i = 0; i < cart.cartSize; ++i)
     {
-        itemTotal = itemTotal + cart.cartItems[cart.cartSize].itemQuantity;
+        itemTotal = itemTotal + cart.cartItems[i].itemQuantity;
     }
 
     return itemTotal;
@@ -142,7 +142,7 @@ void PrintTotal(ShoppingCart cart)
     }
     for(int i = 0; i < cart.cartSize; ++i)
     {
-        cartTotal = cartTotal + cart.cartItems[i].itemPrice;
+        cartTotal = cartTotal + (cart.cartItems[i].itemPrice * cart.cartItems[i].itemQuantity);
     }
     printf("Total: $%d\n", cartTotal);
     return;
@@ -176,7 +176,7 @@ void PrintDescriptions(ShoppingCart cart)
  *                Continues to be called until user inputs 'q'
  * =====================================================================================
  */
-char PrintMenu(ShoppingCart cart)
+char PrintMenu(ShoppingCart* cart)
 {
     char userChar;
     printf("MENU\n");
@@ -189,8 +189,10 @@ char PrintMenu(ShoppingCart cart)
     printf("\n");
     printf("Choose an option:\n");
     scanf(" %c", &userChar);
+
     if(userChar == 'a')
     {
+        getchar();
         ItemToPurchase item;
         printf("ADD ITEM TO CART\n");
         printf("Enter the item name:\n");
@@ -198,21 +200,24 @@ char PrintMenu(ShoppingCart cart)
         printf("Enter the item description:\n");
         fgets(item.itemDescription, 50, stdin);
         printf("Enter the item price:\n");
-        scanf("%d", &item.itemPrice);
+        scanf(" %d", &item.itemPrice);
         printf("Enter the item quantity:\n");
-        scanf("%d", &item.itemQuantity);
-        AddItem(item, cart);
+        getchar();
+        scanf(" %d", &item.itemQuantity);
+        *cart = AddItem(item, *cart);
     }
     else if(userChar == 'r')
     {
+        getchar();
         char deleteItem[50];
         printf("REMOVE ITEM FROM CART\n");
         printf("Enter the item name:\n");
         fgets(deleteItem, 50, stdin);
-        RemoveItem(deleteItem, cart);
+        *cart = RemoveItem(deleteItem, *cart);
     }
     else if(userChar == 'c')
     {
+        getchar();
         ItemToPurchase item;
         char modItem[50];
         int modQuantity;
@@ -220,20 +225,22 @@ char PrintMenu(ShoppingCart cart)
         printf("Enter the item name:\n");
         fgets(modItem, 50, stdin);
         printf("Enter new quantity:\n");
-        scanf("%d", &modQuantity);
+        scanf(" %d", &modQuantity);
         strcpy(item.itemName, modItem);
         item.itemQuantity = modQuantity;
-        ModifyItem(item, cart);
+        *cart = ModifyItem(item, *cart);
     }
     else if(userChar == 'i')
     {
-    printf("OUTPUT ITEMS' DESCRIPTIONS\n");
-    PrintDescriptions(cart);
+        getchar();
+        printf("OUTPUT ITEMS' DESCRIPTIONS\n");
+        PrintDescriptions(*cart);
     }
     else if(userChar == 'o')
     {
-    printf("OUTPUT SHOPPING CART\n");
-    PrintTotal(cart);
+        getchar();
+        printf("OUTPUT SHOPPING CART\n");
+        PrintTotal(*cart);
     }
     return userChar;
 }
