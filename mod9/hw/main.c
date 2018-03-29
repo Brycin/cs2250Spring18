@@ -32,8 +32,22 @@ int main()
     }
     printf("Enter Customer's Name:\n");
     fgets(cart.customerName, 50, stdin);
+    for(int i = 0; i < sizeof(cart.customerName); ++i)
+    {
+        if(cart.customerName[i] == '\n')
+        {
+            cart.customerName[i] = '\0';
+        }
+    }
     printf("Enter Today's Date:\n");
     fgets(cart.currentDate, 50, stdin);
+    for(int i = 0; i < sizeof(cart.currentDate); ++i)
+    {
+        if(cart.currentDate[i] == '\n')
+        {
+            cart.currentDate[i] = '\0';
+        }
+    }
     printf("\n");
     printf("Customer Name: %s\n", cart.customerName);
     printf("Today's Date: %s\n", cart.currentDate);

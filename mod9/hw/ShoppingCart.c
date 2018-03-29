@@ -52,7 +52,7 @@ ShoppingCart AddItem(ItemToPurchase item, ShoppingCart cart)
  * =====================================================================================
  */
 
-ShoppingCart RemoveItem(char name[], ShoppingCart cart)
+ShoppingCart RemoveItem(char name[50], ShoppingCart cart)
 {
     // 1) String compare (strcmp) to find the item
     //What to compare to: cart.cartItems[Index].name
@@ -61,20 +61,24 @@ ShoppingCart RemoveItem(char name[], ShoppingCart cart)
     // ELSE print to error
 
     int i = 0;
-    for(i = i; i < cart.cartSize; ++i);
+    while(i <= cart.cartSize)
     {
-        if(strcmp(name, cart.cartItems[i].itemName) == 0)
+        if(i == cart.cartSize)
+        {
+            printf("Item not found in cart. Nothing removed.\n");
+            printf("\n");
+            ++i;
+        }
+        if(strcmp(cart.cartItems[i].itemName, name) == 0)
         {
             for(i = i; i < cart.cartSize - 1; ++i)
             {
                 cart.cartItems[i] = cart.cartItems[i + 1];
-                --cart.cartSize;
             }
+                --cart.cartSize;
+                break;
         }
-        else
-        {
-            printf("Item not found in cart. Nothing removed.\n");
-        }
+        ++i;
     }
 
     return cart;
@@ -92,14 +96,23 @@ ShoppingCart RemoveItem(char name[], ShoppingCart cart)
 ShoppingCart ModifyItem(ItemToPurchase item, ShoppingCart cart)
 {
     int i = 0;
-    for(i = i; i < cart.cartSize; ++i);
+   /* for(i = i; i < cart.cartSize; ++i);
     {
-        if(strcmp(item.itemName, cart.cartItems[i].itemName) == 0)
+        if(strcmp(item.itemName, cart.cartItems[i].itemName) == '0')
         {
             cart.cartItems[i].itemQuantity = item.itemQuantity;
         }
     }
-
+*/
+    while(i < cart.cartSize)
+    {
+        if(strcmp(cart.cartItems[i].itemName, item.itemName) == 0)
+        {
+            cart.cartItems[i].itemQuantity = item.itemQuantity;
+            break;
+        }
+        ++i;
+    }
     return cart;
 }
 
@@ -145,6 +158,7 @@ void PrintTotal(ShoppingCart cart)
         cartTotal = cartTotal + (cart.cartItems[i].itemPrice * cart.cartItems[i].itemQuantity);
     }
     printf("Total: $%d\n", cartTotal);
+    printf("\n");
     return;
 }
 
@@ -196,9 +210,23 @@ char PrintMenu(ShoppingCart* cart)
         ItemToPurchase item;
         printf("ADD ITEM TO CART\n");
         printf("Enter the item name:\n");
-        fgets(item.itemName, 50, stdin);
+        fgets(item.itemName, sizeof(item.itemName), stdin);
+        for(int i = 0; i < sizeof(item.itemName); ++i)
+        {
+            if(item.itemName[i] == '\n')
+            {
+                item.itemName[i] = '\0';
+            }
+        }
         printf("Enter the item description:\n");
-        fgets(item.itemDescription, 50, stdin);
+        fgets(item.itemDescription, sizeof(item.itemDescription), stdin);
+        for(int i = 0; i < sizeof(item.itemDescription); ++i)
+        {
+            if(item.itemDescription[i] == '\n')
+            {
+                item.itemDescription[i] = '\0';
+            }
+        }
         printf("Enter the item price:\n");
         scanf(" %d", &item.itemPrice);
         printf("Enter the item quantity:\n");
@@ -212,7 +240,14 @@ char PrintMenu(ShoppingCart* cart)
         char deleteItem[50];
         printf("REMOVE ITEM FROM CART\n");
         printf("Enter the item name:\n");
-        fgets(deleteItem, 50, stdin);
+        fgets(deleteItem, sizeof(deleteItem), stdin);
+        for(int i = 0; i < sizeof(deleteItem); ++i)
+        {
+            if(deleteItem[i] == '\n')
+            {
+                deleteItem[i] = '\0';
+            }
+        }
         *cart = RemoveItem(deleteItem, *cart);
     }
     else if(userChar == 'c')
@@ -223,7 +258,14 @@ char PrintMenu(ShoppingCart* cart)
         int modQuantity;
         printf("CHANGE ITEM QUANTITY\n");
         printf("Enter the item name:\n");
-        fgets(modItem, 50, stdin);
+        fgets(modItem, sizeof(modItem), stdin);
+        for(int i = 0; i < sizeof(modItem); ++i)
+        {
+            if(modItem[i] == '\n')
+            {
+                modItem[i] = '\0';
+            }
+        }
         printf("Enter new quantity:\n");
         scanf(" %d", &modQuantity);
         strcpy(item.itemName, modItem);
