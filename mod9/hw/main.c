@@ -51,6 +51,7 @@ int main()
     printf("\n");
     printf("Customer Name: %s\n", cart.customerName);
     printf("Today's Date: %s\n", cart.currentDate);
+    printf("\n");
     char userChar;
     cart.cartSize = 0;   // Initializes number of items in cart to 0
     userChar = PrintMenu(&cart); // Gets userChar from PrintMenu
