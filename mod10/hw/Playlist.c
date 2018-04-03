@@ -27,6 +27,11 @@ void CreatePlaylistNode(PlaylistNode* thisNode, char idInit[],
  */
 void InsertPlaylistNodeAfter(PlaylistNode* thisNode, PlaylistNode* newNode)
 {
+    PlaylistNode* tmpNext = NULL;
+
+    tmpNext = thisNode->nextNodePtr;
+    thisNode->nextNodePtr = newNode;
+    newNode->nextNodePtr = tmpNext;
     return;
 }
 
