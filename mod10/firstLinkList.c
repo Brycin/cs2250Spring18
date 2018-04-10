@@ -46,6 +46,7 @@ int main(void)
     IntNode_InsertAfter(nodeObj1, nodeObj2); //Obj1 points to Obj2. Obj2 still points to NULL
 
     nodeObj3 = (IntNode*)malloc(sizeof(IntNode));
+
     IntNode_Create(nodeObj3, 777, NULL);
     IntNode_InsertAfter(nodeObj1, nodeObj3); //Obj1 points to Obj3 now. Obj don't have to go in order. Obj3 now points to what Obj1 pointed to
     //Final order deadObj, nodeObj1, nodeObj3, nodeObj2

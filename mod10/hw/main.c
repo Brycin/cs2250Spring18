@@ -38,7 +38,7 @@ void PrintMenu(char playlistTitle[])
     int totalTime = 0;
     // IF you follow this template, you will use
     // at least all these pointers
-    //PlaylistNode* newSong = NULL;
+    PlaylistNode* newSong = NULL;
     PlaylistNode* currNode = NULL;
     PlaylistNode* songNode = NULL;
     //PlaylistNode* prevNode = NULL;
@@ -93,10 +93,21 @@ void PrintMenu(char playlistTitle[])
                 // Create a new node for playlist
                 // .....
 
+                if(numNodes = 0)
+                {
+                    headNode = (PlaylistNode*)malloc(sizeof(PlaylistNode));
+                    CreatePlaylistNode(headNode, uniqueID, songName, artistName, songLength, NULL);
+                }
+                else
+                {
+                    currNode = (PlaylistNode*)malloc(sizeof(PlaylistNode));
+                    CreatePlaylistNode(currNode, uniqueID, songName, artistName, songLength, NULL);
+                }
 
                 // If song is first in playlist, update head/tail
                 // Otherwise insert to end of playlist and update tail
                 // .....
+                ++numNodes;
                 break;
 
 
