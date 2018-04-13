@@ -32,8 +32,14 @@ int main()
     char dataPoint[50] = "";
     char strData[50] = "";
     char intData[50] = "";
+    int intDataValue;
     int numCommas = 0;
+    int commaIndex = 0;
     int askInput = 0;
+    char* subString = NULL;
+    char tableStrings[50][50];
+    int tableIntegers[50];
+    int tableDataIndex = 0;
 
     //Get tiele of the table
     printf("Enter a title for the data:\n");
@@ -81,6 +87,8 @@ int main()
         //Now enter Data Point
         if(askInput == 0)
         {
+            strcpy(strData, "");
+            strcpy(intData, "");
             printf("Enter a data point (-1 to stop input):\n");
             fgets(dataPoint, 50, stdin);
             for(int i = 0; i < sizeof(dataPoint); ++i)
@@ -155,7 +163,30 @@ int main()
             }
             if((isdigit(dataPoint[i]) != 0))
             {
+                //Input has correct format at this point
+                //Get Data String
+                for(commaIndex = 0; dataPoint[commaIndex] != '\0'; ++commaIndex)
+                {
+                    if(dataPoint[commaIndex] == ',')
+                    {
+                        break;
+                    }
+                }
+                strncat(strData, dataPoint, commaIndex);
+                //Get Data Integer
+                subString = strstr(dataPoint, ",");
+                strcpy(intData, ++subString);
+                printf("Data string: ");
+                for(int i = 0; strData[i]; ++i)
+                {
+                    printf("%c", strData[i]);
+                }
                 printf("\n");
+                strcpy(tableStrings[tableDataIndex], strData);
+                sscanf(intData, "%d", &intDataValue);
+                printf("Data integer: %d\n\n", intDataValue);
+                tableIntegers[tableDataIndex] = intDataValue;
+                ++tableDataIndex;
                 askInput = 0;
                 break;
             }
@@ -182,8 +213,13 @@ int main()
 
 
     }
-            return 0;
+        for(int i =0; i < tableDataIndex; ++i)
+        {
+            printf("%s %d\n", tableStrings[i], tableIntegers[i]);
+        }
+    return 0;
 }
 // Function Definitions
+
 
 
