@@ -3,7 +3,7 @@
  *
  *       Filename:  part2.c
  *
- *    Description:  
+ *    Description:  Making a table with two column
  *
  *        Version:  1.0
  *        Created:  04/13/2018 10:28:50 AM
@@ -33,6 +33,7 @@ int main()
     char strData[50] = "";
     char intData[50] = "";
     int numCommas = 0;
+    int askInput = 0;
 
     //Get tiele of the table
     printf("Enter a title for the data:\n");
@@ -75,24 +76,29 @@ int main()
     {
         strcpy(strData, "");
         strcpy(intData, "");
+        numCommas = 0;
 
         //Now enter Data Point
-        printf("Enter a data point (-1 to stop input):\n");
-        fgets(dataPoint, 50, stdin);
-        for(int i = 0; i < sizeof(dataPoint); ++i)
+        if(askInput == 0)
         {
-            if(dataPoint[i] == '\n')
+            printf("Enter a data point (-1 to stop input):\n");
+            fgets(dataPoint, 50, stdin);
+            for(int i = 0; i < sizeof(dataPoint); ++i)
             {
-                dataPoint[i] = '\0';
-            }
-            if(dataPoint[i] == ',')
-            {
-                ++numCommas;
+                if(dataPoint[i] == '\n')
+                {
+                    dataPoint[i] = '\0';
+                }
+                if(dataPoint[i] == ',')
+                {
+                    ++numCommas;
+                }
             }
         }
         while((numCommas == 0) &&
                 (strcmp(dataPoint, "-1") != 0))
         {
+            askInput = 1;
             printf("Error: No comma in string.\n\n");
             printf("Enter a data point (-1 to stop input):\n");
             fgets(dataPoint, 50, stdin);
@@ -109,12 +115,14 @@ int main()
                 }
             }
         }
-        while((numCommas == 2) &&
+        while((numCommas >= 2) &&
                 (strcmp(dataPoint, "-1") != 0))
         {
+            askInput = 1;
             printf("Error: Too many commas in input.\n\n");
             printf("Enter a data point (-1 to stop input):\n");
             fgets(dataPoint, 50, stdin);
+            numCommas = 0;
             for(int i = 0; i < sizeof(dataPoint); ++i)
             {
                 if(dataPoint[i] == '\n')
@@ -127,12 +135,55 @@ int main()
                 }
             }
         }
+        while((numCommas == 1) &&
+                (strcmp(dataPoint, "-1") != 0))
+        {
+            askInput = 1;
+            int i;
+            numCommas = 0;
+            for(i = 0; dataPoint[i] != '\0'; ++i)
+            {
+                if(dataPoint[i] == ',')
+                {
+                    ++i;
+                    break;
+                }
+            }
+            while(dataPoint[i] == ' ')
+            {
+                ++i;
+            }
+            if((isdigit(dataPoint[i]) != 0))
+            {
+                printf("\n");
+                askInput = 0;
+                break;
+            }
+            else
+            {
+                printf("Error: Comma not followed by an integer.\n\n");
+                printf("Enter a valid data point:\n");
+                fgets(dataPoint, 50, stdin);
+                numCommas = 0;
+                for(int i = 0; i < sizeof(dataPoint); ++i)
+                {
+                    if(dataPoint[i] == '\n')
+                    {
+                        dataPoint[i] = '\0';
+                    }
+                    if(dataPoint[i] == ',')
+                    {
+                        ++numCommas;
+                    }
+                }
+            }
+        }
 
 
 
     }
             return 0;
-        }
+}
 // Function Definitions
 
 
