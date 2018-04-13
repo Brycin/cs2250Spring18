@@ -91,7 +91,7 @@ int main()
               printf("%c", wordTwo[i]);
           }
       }
-      printf("\n\n");
+      printf("\n");
   }
 
     return 0;
