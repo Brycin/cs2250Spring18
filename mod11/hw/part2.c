@@ -213,9 +213,26 @@ int main()
 
 
     }
+    printf("%33s\n", title);
+    printf("%-20s|%23s\n", header1, header2);
+    for(int i = 0; i < 44; ++i)
+    {
+        printf("-");
+    }
+    printf("\n");
         for(int i =0; i < tableDataIndex; ++i)
         {
-            printf("%s %d\n", tableStrings[i], tableIntegers[i]);
+            printf("%-20s|%23d\n", tableStrings[i], tableIntegers[i]);
+        }
+        printf("\n");
+        for(int i = 0; i < tableDataIndex; ++i)
+        {
+            printf("%20s ", tableStrings[i]);
+            for(int j = 0; j < tableIntegers[i]; ++j)
+            {
+                printf("*");
+            }
+            printf("\n");
         }
     return 0;
 }
