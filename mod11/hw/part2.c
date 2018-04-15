@@ -109,6 +109,8 @@ int main()
             askInput = 1;
             printf("Error: No comma in string.\n\n");
             printf("Enter a data point (-1 to stop input):\n");
+            strcpy(strData, "");
+            strcpy(intData, "");
             fgets(dataPoint, 50, stdin);
             numCommas = 0;
             for(int i = 0; i < sizeof(dataPoint); ++i)
@@ -129,6 +131,8 @@ int main()
             askInput = 1;
             printf("Error: Too many commas in input.\n\n");
             printf("Enter a data point (-1 to stop input):\n");
+            strcpy(strData, "");
+            strcpy(intData, "");
             fgets(dataPoint, 50, stdin);
             numCommas = 0;
             for(int i = 0; i < sizeof(dataPoint); ++i)
@@ -190,10 +194,12 @@ int main()
                 askInput = 0;
                 break;
             }
-            else
+            else if(isdigit(dataPoint[i]) == 0)
             {
                 printf("Error: Comma not followed by an integer.\n\n");
-                printf("Enter a valid data point:\n");
+                printf("Enter a data point (-1 to stop input):\n");
+                strcpy(strData, "");
+                strcpy(intData, "");
                 fgets(dataPoint, 50, stdin);
                 numCommas = 0;
                 for(int i = 0; i < sizeof(dataPoint); ++i)
@@ -202,7 +208,7 @@ int main()
                     {
                         dataPoint[i] = '\0';
                     }
-                    if(dataPoint[i] == ',')
+                    else if(dataPoint[i] == ',')
                     {
                         ++numCommas;
                     }
@@ -213,6 +219,7 @@ int main()
 
 
     }
+    printf("\n");
     printf("%33s\n", title);
     printf("%-20s|%23s\n", header1, header2);
     for(int i = 0; i < 44; ++i)
@@ -220,20 +227,20 @@ int main()
         printf("-");
     }
     printf("\n");
-        for(int i =0; i < tableDataIndex; ++i)
+    for(int i =0; i < tableDataIndex; ++i)
+    {
+        printf("%-20s|%23d\n", tableStrings[i], tableIntegers[i]);
+    }
+    printf("\n");
+    for(int i = 0; i < tableDataIndex; ++i)
+    {
+        printf("%20s ", tableStrings[i]);
+        for(int j = 0; j < tableIntegers[i]; ++j)
         {
-            printf("%-20s|%23d\n", tableStrings[i], tableIntegers[i]);
+            printf("*");
         }
         printf("\n");
-        for(int i = 0; i < tableDataIndex; ++i)
-        {
-            printf("%20s ", tableStrings[i]);
-            for(int j = 0; j < tableIntegers[i]; ++j)
-            {
-                printf("*");
-            }
-            printf("\n");
-        }
+    }
     return 0;
 }
 // Function Definitions
