@@ -5,7 +5,7 @@
 #include <string>
 using namespace std;
 
-class ItemToPurchase 
+class ItemToPurchase
 {
 
     public:

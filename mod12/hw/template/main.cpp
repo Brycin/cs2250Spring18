@@ -10,6 +10,7 @@ char PrintMenu(ShoppingCart& theCart);
 // Main Function
 int main() 
 {
+    vector<ShoppingCart*> theCart;
     string custName;
     string today;
     char menuChoice;
