@@ -3,7 +3,7 @@
  *
  *       Filename:  brycinSilvester_exam2_task1.c
  *
- *    Description:  Task 1
+ *    Description:  Task 1 Problem 1
  *
  *        Version:  1.0
  *        Created:  04/19/2018 08:26:19 AM
